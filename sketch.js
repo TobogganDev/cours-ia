@@ -2,6 +2,8 @@
 let video;
 let detector;
 let detections = [];
+let speech = new p5.Speech();
+
 
 // Preload the model
 function preload() {
@@ -27,6 +29,8 @@ function gotDetections(error, results) {
     fill(255);
     textSize(24);
     text(object.label, object.x + 10, object.y+24);
+    console.log(object.label);
+    speech.speak(`Object detected: ${object.label}`);
   }
   // Run the model again (loop on itself because it's a video not a single image)
   detector.detect(video, gotDetections);
