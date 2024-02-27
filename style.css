@@ -1,0 +1,26 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+main{
+  font-family: sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: #143F6B;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+h1{
+  font-size: 3rem;
+  color: #F55353;
+  text-transform: uppercase;
+}
+canvas{
+  display: block;
+  border: 2px solid #F55353;
+}
+
