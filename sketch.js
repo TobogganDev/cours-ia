@@ -3,6 +3,7 @@ let video;
 let detector;
 let detections = [];
 let speech = new p5.Speech();
+let objectToSpeech = '';
 
 
 // Preload the model
@@ -30,7 +31,8 @@ function gotDetections(error, results) {
     textSize(24);
     text(object.label, object.x + 10, object.y+24);
     console.log(object.label);
-    speech.speak(`Object detected: ${object.label}`);
+
+    // speech.speak(`Object detected: ${object.label}`);
   }
   // Run the model again (loop on itself because it's a video not a single image)
   detector.detect(video, gotDetections);
@@ -43,6 +45,14 @@ function setup() {
   video.size(640, 480);
   video.hide();
   detector.detect(video, gotDetections);
+
+  // Set an interval to update objectToSpeech and speak it every 20 seconds
+  setInterval(() => {
+    if (detections.length > 0) {
+      objectToSpeech = detections[detections.length - 1].label;
+      speech.speak(`Object detected: ${objectToSpeech}`);
+    }
+  }, 5000); // 20000 milliseconds = 20 seconds
 }
 
 // Draw function for video
